@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="MainTest">
+
+    <listeners>
+        <listener class-name="org.akavity.utils.AllureListener"></listener>
+    </listeners>
+
+    <test name="MainTest" parallel="false">
+        <classes>
+            <class name="org.akavity.NewTest">
+                <methods>
+                    <include name="clickHorizontalMenuItem"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
