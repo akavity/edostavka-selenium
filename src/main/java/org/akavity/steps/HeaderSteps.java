@@ -18,4 +18,11 @@ public class HeaderSteps {
         log.info("Click horizontal menu item");
         headerPage.scrollableMenuItem(name).click();
     }
+
+    @Step("Verify title is displayed")
+    public boolean verifyTitleIsDisplayed(String title) {
+        boolean result = headerPage.headerTitle(title).isDisplayed();
+        log.info("Is title displayed: {}", result);
+        return result;
+    }
 }

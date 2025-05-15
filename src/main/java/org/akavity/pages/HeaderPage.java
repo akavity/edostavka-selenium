@@ -14,4 +14,9 @@ public class HeaderPage extends BasePage {
         String xpathOfItem = "//div[contains(@class,'swiper__item')]/a[.='" + name + "']";
         return driver.findElement(By.xpath(xpathOfItem));
     }
+
+    public WebElement headerTitle(String title) {
+        String xpathOfTitle = "//header/h1[contains(text(),'" + title + "')]";
+        return driver.findElement(By.xpath(xpathOfTitle));
+    }
 }
