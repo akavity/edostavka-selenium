@@ -9,8 +9,8 @@ import org.openqa.selenium.WebDriver;
 public class HeaderSteps {
     private HeaderPage headerPage;
 
-    public HeaderSteps(WebDriver driver) {
-        headerPage = new HeaderPage(driver);
+    public HeaderSteps(WebDriver webDriver) {
+        headerPage = new HeaderPage(webDriver);
     }
 
     @Step("Click the scrollable menu item")
@@ -24,5 +24,11 @@ public class HeaderSteps {
         boolean result = headerPage.headerTitle(title).isDisplayed();
         log.info("Is title displayed: {}", result);
         return result;
+    }
+
+    @Step
+    public void clickCatalogButton() {
+        log.info("CLick catalog button");
+        headerPage.getCatalogButton().click();
     }
 }
