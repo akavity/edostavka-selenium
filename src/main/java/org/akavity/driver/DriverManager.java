@@ -18,16 +18,20 @@ public class DriverManager {
             driver = new ChromeDriver();
             driver.manage().window().maximize();
             driver.manage().deleteAllCookies();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         }
         return driver;
     }
 
     public static void quitDriver() {
-        try {
-            driver.quit();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (driver != null) {
+            try {
+                driver.quit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                driver = null;
+            }
         }
     }
 }
