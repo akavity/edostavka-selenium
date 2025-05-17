@@ -3,7 +3,9 @@ package org.akavity.steps;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.akavity.pages.HeaderPage;
+import org.akavity.utils.Utils;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 @Log4j2
 public class HeaderSteps {
@@ -30,5 +32,28 @@ public class HeaderSteps {
     public void clickCatalogButton() {
         log.info("CLick catalog button");
         headerPage.getCatalogButton().click();
+    }
+
+    @Step
+    public void performSearchWithText(String text) {
+        log.info("Enter text into search: {}", text);
+        WebElement element = headerPage.getSearchField();
+        element.click();
+        element.sendKeys(text);
+        element.submit();
+    }
+
+    @Step
+    public boolean doProductDescriptionsContainText(String text, int limit) {
+        Utils.sleep(2000);
+        return headerPage.getProductDescriptions()
+                .stream()
+                .limit(limit)
+                .map(x -> {
+                    String label = x.getDomAttribute("aria-label");
+                    log.info("Text: {}", label);
+                    return label != null ? label.toLowerCase() : "";
+                })
+                .allMatch(t -> t.contains(text.toLowerCase()));
     }
 }

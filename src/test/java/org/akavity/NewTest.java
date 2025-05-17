@@ -3,6 +3,7 @@ package org.akavity;
 import org.akavity.annotations.TestData;
 import org.akavity.models.headerTest.CatalogData;
 import org.akavity.models.headerTest.HorizMenuData;
+import org.akavity.models.headerTest.SearchData;
 import org.akavity.steps.CatalogStep;
 import org.akavity.steps.HeaderSteps;
 import org.akavity.steps.PopUpsSteps;
@@ -41,5 +42,14 @@ public class NewTest extends BaseTest {
         catalogStep.clickDesktopItem(catalogData.getDesktopItem());
 
         Assert.assertTrue(headerSteps.verifyTitleIsDisplayed(catalogData.getTitle()));
+    }
+
+    @TestData(jsonFile = "searchData", model = "SearchData", folder = "headerTest")
+    @Test(description = "Search for a product using search", dataProviderClass = JsonReader.class, dataProvider = "getData")
+    public void searchForProduct(SearchData searchData) {
+        popUpsSteps.acceptCookie();
+        headerSteps.performSearchWithText(searchData.getText());
+
+        Assert.assertTrue(headerSteps.doProductDescriptionsContainText(searchData.getText(), searchData.getLimit()));
     }
 }

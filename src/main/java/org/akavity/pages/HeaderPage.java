@@ -5,10 +5,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class HeaderPage extends BasePage {
 
     @FindBy(css = "button[class*='catalog']")
     private WebElement catalogButton;
+
+    @FindBy(css = "div[class*='search_inputs'] input")
+    private WebElement searchField;
+
+    @FindBy(css = "div[class*='vertical_information'] a")
+    private List<WebElement> productDescriptions;
 
     public HeaderPage(WebDriver driver) {
         super(driver);
@@ -26,5 +34,13 @@ public class HeaderPage extends BasePage {
 
     public WebElement getCatalogButton() {
         return catalogButton;
+    }
+
+    public WebElement getSearchField() {
+        return searchField;
+    }
+
+    public List<WebElement> getProductDescriptions() {
+        return productDescriptions;
     }
 }
