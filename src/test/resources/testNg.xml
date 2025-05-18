@@ -7,10 +7,11 @@
 
     <test name="MainTest" parallel="false">
         <classes>
-            <class name="org.akavity.NewTest">
+            <class name="org.akavity.HeaderTest">
                 <methods>
                     <include name="horizontalMenuNavigation"/>
                     <include name="catalogNavigation"/>
+                    <include name="searchForProduct"/>
                 </methods>
             </class>
         </classes>

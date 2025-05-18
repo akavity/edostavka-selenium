@@ -18,6 +18,18 @@ public class HeaderPage extends BasePage {
     @FindBy(css = "div[class*='vertical_information'] a")
     private List<WebElement> productDescriptions;
 
+    @FindBy(css = "button[aria-label='Войти']")
+    private WebElement accountButton;
+
+    @FindBy(css = "a[aria-label='История заказов']")
+    private WebElement orderButton;
+
+    @FindBy(css = "a[aria-label='Избранные товары']")
+    private WebElement favoriteButton;
+
+    @FindBy(css = "a[href='/cart']")
+    private WebElement cartButton;
+
     public HeaderPage(WebDriver driver) {
         super(driver);
     }
@@ -42,5 +54,21 @@ public class HeaderPage extends BasePage {
 
     public List<WebElement> getProductDescriptions() {
         return productDescriptions;
+    }
+
+    public WebElement getAccountButton() {
+        return accountButton;
+    }
+
+    public WebElement getOrderButton() {
+        return orderButton;
+    }
+
+    public WebElement getFavoriteButton() {
+        return favoriteButton;
+    }
+
+    public WebElement getCartButton() {
+        return cartButton;
     }
 }

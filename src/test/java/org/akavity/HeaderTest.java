@@ -12,7 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class NewTest extends BaseTest {
+public class HeaderTest extends BaseTest {
     private HeaderSteps headerSteps;
     private PopUpsSteps popUpsSteps;
     private CatalogStep catalogStep;

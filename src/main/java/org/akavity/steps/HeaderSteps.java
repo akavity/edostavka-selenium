@@ -56,4 +56,28 @@ public class HeaderSteps {
                 })
                 .allMatch(t -> t.contains(text.toLowerCase()));
     }
+
+    @Step
+    public void clickAccountButton() {
+        log.info("CLick account button");
+        headerPage.getAccountButton().click();
+    }
+
+    @Step
+    public void clickFavoriteButton() {
+        log.info("Click favorite button");
+        headerPage.getFavoriteButton().click();
+    }
+
+    @Step
+    public void clickOrderButton() {
+        log.info("CLick order button");
+        headerPage.getOrderButton().click();
+    }
+
+    @Step
+    public void clickCartButton() {
+        log.info("Click cart button");
+        headerPage.getCartButton().click();
+    }
 }
