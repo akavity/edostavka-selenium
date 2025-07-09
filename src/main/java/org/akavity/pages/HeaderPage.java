@@ -18,9 +18,6 @@ public class HeaderPage extends BasePage {
     @FindBy(css = "div[class*='vertical_information'] a")
     private List<WebElement> productDescriptions;
 
-    @FindBy(css = "button[aria-label='Войти']")
-    private WebElement accountButton;
-
     @FindBy(css = "a[aria-label='История заказов']")
     private WebElement orderButton;
 
@@ -32,6 +29,11 @@ public class HeaderPage extends BasePage {
 
     public HeaderPage(WebDriver driver) {
         super(driver);
+    }
+
+    public WebElement getAccountButton(String label) {
+        String cssOfItem = "button[aria-label*='" + label + "']";
+        return driver.findElement(By.cssSelector(cssOfItem));
     }
 
     public WebElement scrollableMenuItem(String name) {
@@ -54,10 +56,6 @@ public class HeaderPage extends BasePage {
 
     public List<WebElement> getProductDescriptions() {
         return productDescriptions;
-    }
-
-    public WebElement getAccountButton() {
-        return accountButton;
     }
 
     public WebElement getOrderButton() {

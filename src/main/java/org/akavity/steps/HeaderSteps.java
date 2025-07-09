@@ -58,9 +58,16 @@ public class HeaderSteps {
     }
 
     @Step
-    public void clickAccountButton() {
+    public void clickAccountButton(String label) {
         log.info("CLick account button");
-        headerPage.getAccountButton().click();
+        headerPage.getAccountButton(label).click();
+    }
+
+    @Step
+    public boolean isAccountDisplayed(String name) {
+        boolean result = headerPage.getAccountButton(name).isDisplayed();
+        log.info("Is account \"{}\" displayed: {}", name, result);
+        return result;
     }
 
     @Step
