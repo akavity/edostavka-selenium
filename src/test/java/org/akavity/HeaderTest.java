@@ -1,9 +1,11 @@
 package org.akavity;
 
 import org.akavity.annotations.TestData;
+import org.akavity.models.headerTest.AccountData;
 import org.akavity.models.headerTest.CatalogData;
 import org.akavity.models.headerTest.HorizMenuData;
 import org.akavity.models.headerTest.SearchData;
+import org.akavity.steps.AccountSteps;
 import org.akavity.steps.CatalogStep;
 import org.akavity.steps.HeaderSteps;
 import org.akavity.steps.PopUpsSteps;
@@ -16,12 +18,14 @@ public class HeaderTest extends BaseTest {
     private HeaderSteps headerSteps;
     private PopUpsSteps popUpsSteps;
     private CatalogStep catalogStep;
+    private AccountSteps accountSteps;
 
     @BeforeMethod
     public void initSteps() {
         headerSteps = new HeaderSteps(driver);
         popUpsSteps = new PopUpsSteps(driver);
         catalogStep = new CatalogStep(driver);
+        accountSteps = new AccountSteps(driver);
     }
 
     @TestData(jsonFile = "horizMenuData", model = "HorizMenuData", folder = "headerTest")
@@ -51,5 +55,18 @@ public class HeaderTest extends BaseTest {
         headerSteps.performSearchWithText(searchData.getText());
 
         Assert.assertTrue(headerSteps.doProductDescriptionsContainText(searchData.getText(), searchData.getLimit()));
+    }
+
+    @TestData(jsonFile = "accountData", model = "AccountData", folder = "headerTest")
+    @Test(description = "Login to account using password", dataProviderClass = JsonReader.class, dataProvider = "getData")
+    public void loginToAccount(AccountData accountData) {
+        popUpsSteps.acceptCookie();
+        headerSteps.clickAccountButton(accountData.getLabelEnter());
+        accountSteps.enterTelephone(accountData.getTelephone());
+        accountSteps.clickPasswordButton();
+        accountSteps.enterPassword(accountData.getPassword());
+        accountSteps.clickSubmitButton();
+
+        Assert.assertTrue(headerSteps.isAccountDisplayed(accountData.getLabelName()));
     }
 }

@@ -12,6 +12,7 @@
                     <include name="horizontalMenuNavigation"/>
                     <include name="catalogNavigation"/>
                     <include name="searchForProduct"/>
+                    <include name="loginToAccount"/>
                 </methods>
             </class>
         </classes>
